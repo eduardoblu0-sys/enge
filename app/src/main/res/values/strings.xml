@@ -36,4 +36,10 @@
 <item>Alumínio 6061</item>
 <item>Plástico ABS</item>
 </string-array>
+<string-array name="buckling_k_factors">
+<item>Engastado–livre: K=2,0</item>
+<item>Engastado–articulado: K=0,7</item>
+<item>Articulado–articulado: K=1,0</item>
+<item>Engastado–engastado: K=0,5</item>
+</string-array>
     </resources>
