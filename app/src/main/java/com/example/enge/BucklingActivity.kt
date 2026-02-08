@@ -28,11 +28,12 @@ class BucklingActivity : ComponentActivity() {
         val inputArea = findViewById<EditText>(R.id.input_buckling_area)
         val inputInertiaX = findViewById<EditText>(R.id.input_buckling_inertia_x)
         val inputInertiaY = findViewById<EditText>(R.id.input_buckling_inertia_y)
+        val inputLoadApplied = findViewById<EditText>(R.id.input_buckling_load_applied)
+        val inputMaterial = findViewById<Spinner>(R.id.input_buckling_material)
         val inputModulus = findViewById<EditText>(R.id.input_buckling_modulus)
         val inputYield = findViewById<EditText>(R.id.input_buckling_yield)
         val inputGamma = findViewById<EditText>(R.id.input_buckling_gamma)
         val inputLambdaLim = findViewById<EditText>(R.id.input_buckling_lambda_limit)
-        val inputLoadApplied = findViewById<EditText>(R.id.input_buckling_load_applied)
         val inputAngle = findViewById<EditText>(R.id.input_buckling_angle)
         val inputPreset = findViewById<CheckBox>(R.id.input_buckling_preset)
 
@@ -54,6 +55,7 @@ class BucklingActivity : ComponentActivity() {
 
         val defaultAngle = 3.0
         val defaultLambdaLimit = 160.0
+        val defaultGamma = 1.5
         val kValues = listOf(0.65, 2.1, 0.8, 1.2, 1.2, 1.2, 1.0, 1.2, 2.1, 2.0)
         var isApplyingPreset = false
 
@@ -61,7 +63,37 @@ class BucklingActivity : ComponentActivity() {
             isApplyingPreset = true
             inputAngle.setText(defaultAngle.toInt().toString())
             inputLambdaLim.setText(defaultLambdaLimit.toInt().toString())
+            inputGamma.setText(NumberFormatter.format(defaultGamma))
             isApplyingPreset = false
+        }
+
+        val materials = mapOf(
+            "SAE 1020 Laminado" to MaterialProperties(fyMpa = 350.0, eGPa = 200.0),
+            "SAE 1045" to MaterialProperties(fyMpa = 530.0, eGPa = 200.0),
+            "Inox 304" to MaterialProperties(fyMpa = 215.0, eGPa = 193.0),
+            "Alumínio 6061" to MaterialProperties(fyMpa = 275.0, eGPa = 69.0),
+            "Plástico ABS" to MaterialProperties(fyMpa = 40.0, eGPa = 2.1)
+        )
+
+        var lastMaterial: String? = null
+        inputMaterial.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selected = parent?.getItemAtPosition(position)?.toString()
+                if (selected != lastMaterial) {
+                    materials[selected]?.let { material ->
+                        inputYield.setText(NumberFormatter.format(material.fyMpa))
+                        inputModulus.setText(NumberFormatter.format(material.eGPa))
+                    }
+                    lastMaterial = selected
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
         }
 
         inputPreset.isChecked = true
@@ -110,6 +142,9 @@ class BucklingActivity : ComponentActivity() {
         )
         inputGamma.addTextChangedListener(
             DebouncedTextWatcher { text ->
+                if (!isApplyingPreset && parseDouble(text) != defaultGamma) {
+                    inputPreset.isChecked = false
+                }
                 viewModel.updateInputs { it.copy(gammaM = parseDouble(text)) }
             }
         )
@@ -183,4 +218,9 @@ class BucklingActivity : ComponentActivity() {
     private fun formatOutput(value: Double?, unit: String): String {
         return value?.let { "${NumberFormatter.format(it)} $unit" } ?: "—"
     }
+
+    private data class MaterialProperties(
+        val fyMpa: Double,
+        val eGPa: Double
+    )
 }
