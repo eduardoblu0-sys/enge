@@ -18,6 +18,7 @@ import com.example.enge.model.LengthUnit
 import com.example.enge.model.ModulusUnit
 import com.example.enge.model.OutputDataUi
 import com.example.enge.model.StressUnit
+import com.example.enge.util.NumberFormatter
 import java.util.Locale
 
 class MainActivity : ComponentActivity() {
@@ -87,11 +88,11 @@ class MainActivity : ComponentActivity() {
                         val modulusUnit = parseModulusUnit(readUnitLabel(inputModulusUnit))
                         if (yieldUnit != null) {
                             val fyPa = material.fyMpa * 1e6
-                            inputYieldValue.setText(formatNumber(stressFromPa(fyPa, yieldUnit)))
+                            inputYieldValue.setText(NumberFormatter.format(stressFromPa(fyPa, yieldUnit)))
                         }
                         if (modulusUnit != null) {
                             val modulusPa = material.eGPa * 1e9
-                            inputModulusValue.setText(formatNumber(modulusFromPa(modulusPa, modulusUnit)))
+                            inputModulusValue.setText(NumberFormatter.format(modulusFromPa(modulusPa, modulusUnit)))
                         }
                     }
                     lastMaterial = selected
@@ -336,10 +337,6 @@ class MainActivity : ComponentActivity() {
         return normalized.toDoubleOrNull() ?: 0.0
     }
 
-    private fun formatNumber(value: Double): String {
-        return String.format(Locale.US, "%.4f", value)
-    }
-
     private fun readInput(inputBindings: InputBindings, inputFsAdmValue: EditText): InputDataRaw? {
         var isValid = true
 
@@ -446,15 +443,15 @@ class MainActivity : ComponentActivity() {
         outputStatusStressValue: EditText,
         outputFsObtValue: EditText
     ) {
-        outputDeltaObtValue.setText(formatNumber(output.delta_obt))
-        outputDeltaAdmValue.setText(formatNumber(output.delta_adm))
-        outputMmaxValue.setText(formatNumber(output.Mmax))
-        outputSigmaValue.setText(formatNumber(output.sigma))
-        outputFyAdmValue.setText(formatNumber(output.fy_adm))
+        outputDeltaObtValue.setText(NumberFormatter.format(output.delta_obt))
+        outputDeltaAdmValue.setText(NumberFormatter.format(output.delta_adm))
+        outputMmaxValue.setText(NumberFormatter.format(output.Mmax))
+        outputSigmaValue.setText(NumberFormatter.format(output.sigma))
+        outputFyAdmValue.setText(NumberFormatter.format(output.fy_adm))
         outputStatusDeflectionValue.setText(output.status_text_deflection)
-        outputPercentualDeltaValue.setText(formatNumber(output.percentual_delta))
+        outputPercentualDeltaValue.setText(NumberFormatter.format(output.percentual_delta))
         outputStatusStressValue.setText(output.status_text_stress)
-        outputFsObtValue.setText(formatNumber(output.FS_obtido))
+        outputFsObtValue.setText(NumberFormatter.format(output.FS_obtido))
     }
 
     private fun applyOutputUnits(
