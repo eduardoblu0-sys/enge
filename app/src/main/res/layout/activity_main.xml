@@ -76,6 +76,7 @@
                 android:text="Carga aplicada:" />
 
             <EditText
+                android:id="@+id/input_load_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -83,6 +84,7 @@
                 android:text="1250" />
 
             <Spinner
+                android:id="@+id/input_load_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_force" />
@@ -102,6 +104,7 @@
                 android:text="Comprimento:" />
 
             <EditText
+                android:id="@+id/input_length_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -109,6 +112,7 @@
                 android:text="130" />
 
             <Spinner
+                android:id="@+id/input_length_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_length" />
@@ -128,6 +132,7 @@
                 android:text="Distância máx linha neutra:" />
 
             <EditText
+                android:id="@+id/input_neutral_distance_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -135,6 +140,7 @@
                 android:text="4" />
 
             <Spinner
+                android:id="@+id/input_neutral_distance_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
@@ -154,6 +160,7 @@
                 android:text="Momento de inércia:" />
 
             <EditText
+                android:id="@+id/input_inertia_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -161,6 +168,7 @@
                 android:text="6163" />
 
             <Spinner
+                android:id="@+id/input_inertia_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_inertia" />
@@ -180,6 +188,7 @@
                 android:text="Material:" />
 
             <Spinner
+                android:id="@+id/input_material"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -200,6 +209,7 @@
                 android:text="Limite de escoamento:" />
 
             <EditText
+                android:id="@+id/input_yield_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -207,6 +217,7 @@
                 android:text="250" />
 
             <Spinner
+                android:id="@+id/input_yield_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
@@ -226,6 +237,7 @@
                 android:text="Mód. Elasticidade:" />
 
             <EditText
+                android:id="@+id/input_modulus_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -233,6 +245,7 @@
                 android:text="200" />
 
             <Spinner
+                android:id="@+id/input_modulus_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_modulus" />
@@ -252,6 +265,7 @@
                 android:text="Coef. de segurança admissível:" />
 
             <EditText
+                android:id="@+id/input_fs_adm_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -303,6 +317,7 @@
                 android:text="Deslocamento obtido:" />
 
             <EditText
+                android:id="@+id/output_delta_obt_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -310,6 +325,7 @@
                 android:text="0.7427" />
 
             <Spinner
+                android:id="@+id/output_delta_obt_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
@@ -329,6 +345,7 @@
                 android:text="Deslocamento admissível:" />
 
             <EditText
+                android:id="@+id/output_delta_adm_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -336,6 +353,7 @@
                 android:text="0.325" />
 
             <Spinner
+                android:id="@+id/output_delta_adm_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
@@ -355,6 +373,7 @@
                 android:text="Momento fletor máximo:" />
 
             <EditText
+                android:id="@+id/output_mmax_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -362,6 +381,7 @@
                 android:text="162.5" />
 
             <Spinner
+                android:id="@+id/output_mmax_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_moment" />
@@ -381,6 +401,7 @@
                 android:text="Tensão de flexão:" />
 
             <EditText
+                android:id="@+id/output_sigma_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -388,6 +409,7 @@
                 android:text="105.4681" />
 
             <Spinner
+                android:id="@+id/output_sigma_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
@@ -407,6 +429,7 @@
                 android:text="Limite de escoamento admissível:" />
 
             <EditText
+                android:id="@+id/output_fy_adm_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -414,6 +437,7 @@
                 android:text="166.6667" />
 
             <Spinner
+                android:id="@+id/output_fy_adm_unit"
                 android:layout_width="90dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
@@ -433,6 +457,7 @@
                 android:text="Deslocamento máximo:" />
 
             <EditText
+                android:id="@+id/output_status_deflection_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -453,6 +478,7 @@
                 android:text="Percentual de deslocamento obtido (%):" />
 
             <EditText
+                android:id="@+id/output_percentual_delta_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -474,6 +500,7 @@
                 android:text="Tensão máxima:" />
 
             <EditText
+                android:id="@+id/output_status_stress_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -494,6 +521,7 @@
                 android:text="Fator de segurança obtido:" />
 
             <EditText
+                android:id="@+id/output_fs_obt_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
