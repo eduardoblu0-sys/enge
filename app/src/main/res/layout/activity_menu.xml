@@ -1,85 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F4F5F7"
-    android:fillViewport="true">
+    android:background="#F4F5F7">
 
-    <LinearLayout
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="24dp">
+        android:alpha="0.08"
+        android:contentDescription="@null"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:layout_gravity="center"
+        adjustViewBounds="true"
+        android:src="@drawable/gmr" />
 
-        <GridLayout
-            android:id="@+id/menu_grid"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alignmentMode="alignMargins"
-            android:columnCount="2"
-            android:columnOrderPreserved="false"
-            android:rowCount="1"
-            android:useDefaultMargins="true">
+            android:orientation="vertical"
+            android:padding="24dp">
 
-            <LinearLayout
-                android:id="@+id/menu_beam_deflection_item"
-                android:layout_width="0dp"
+            <GridLayout
+                android:id="@+id/menu_grid"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:alignmentMode="alignMargins"
+                android:columnCount="2"
+                android:columnOrderPreserved="false"
+                android:rowCount="1"
+                android:useDefaultMargins="true">
 
-                <ImageView
-                    android:id="@+id/menu_beam_deflection_icon"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:background="@drawable/menu_icon_background"
-                    android:contentDescription="Flexão de viga"
-                    android:padding="12dp"
-                    android:src="@drawable/beam_deflection" />
-
-                <TextView
-                    android:id="@+id/menu_beam_deflection_label"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/menu_beam_deflection_item"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="flexão de viga"
-                    android:textColor="#5F6368"
-                    android:textSize="12sp" />
-            </LinearLayout>
+                    android:layout_columnWeight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-            <LinearLayout
-                android:id="@+id/menu_buckling_item"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_columnWeight="1"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="8dp">
+                    <ImageView
+                        android:id="@+id/menu_beam_deflection_icon"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="Flexão de viga"
+                        android:padding="12dp"
+                        android:src="@drawable/beam_deflection" />
 
-                <ImageView
-                    android:id="@+id/menu_buckling_icon"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:background="@drawable/menu_icon_background"
-                    android:contentDescription="Buckling"
-                    android:padding="12dp"
-                    android:src="@drawable/beam_deflection" />
+                    <TextView
+                        android:id="@+id/menu_beam_deflection_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="flexão de viga"
+                        android:textColor="#5F6368"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/menu_buckling_label"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/menu_buckling_item"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="buckling"
-                    android:textColor="#5F6368"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </GridLayout>
-    </LinearLayout>
-</ScrollView>
+                    android:layout_columnWeight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/menu_buckling_icon"
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="Buckling"
+                        android:padding="12dp"
+                        android:src="@drawable/beam_deflection" />
+
+                    <TextView
+                        android:id="@+id/menu_buckling_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="buckling"
+                        android:textColor="#5F6368"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </GridLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
