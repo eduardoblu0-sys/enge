@@ -295,6 +295,13 @@
                 android:textSize="13sp" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/button_calculate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Calcular" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -321,8 +328,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="0.7427" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/output_delta_obt_unit"
@@ -349,8 +356,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="0.325" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/output_delta_adm_unit"
@@ -377,8 +384,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="162.5" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/output_mmax_unit"
@@ -405,8 +412,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="105.4681" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/output_sigma_unit"
@@ -433,8 +440,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="166.6667" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
 
             <Spinner
                 android:id="@+id/output_fy_adm_unit"
@@ -461,7 +468,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="FALHOU" />
+                android:enabled="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -482,8 +489,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="228.5143" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
         </LinearLayout>
 
         <LinearLayout
@@ -504,7 +511,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="OK" />
+                android:enabled="false" />
         </LinearLayout>
 
         <LinearLayout
@@ -525,8 +532,8 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="2.3704" />
+                android:enabled="false"
+                android:inputType="numberDecimal" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
