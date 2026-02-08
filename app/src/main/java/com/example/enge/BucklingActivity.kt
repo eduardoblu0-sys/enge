@@ -3,6 +3,7 @@ package com.example.enge
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
@@ -33,6 +34,7 @@ class BucklingActivity : ComponentActivity() {
         val inputLambdaLim = findViewById<EditText>(R.id.input_buckling_lambda_limit)
         val inputLoadApplied = findViewById<EditText>(R.id.input_buckling_load_applied)
         val inputAngle = findViewById<EditText>(R.id.input_buckling_angle)
+        val inputPreset = findViewById<CheckBox>(R.id.input_buckling_preset)
 
         val outputKl = findViewById<TextView>(R.id.output_buckling_kl)
         val outputRx = findViewById<TextView>(R.id.output_buckling_rx)
@@ -50,7 +52,19 @@ class BucklingActivity : ComponentActivity() {
         val outputKgfIncl = findViewById<TextView>(R.id.output_buckling_kgf_inclination)
         val outputStatus = findViewById<TextView>(R.id.output_buckling_status)
 
-        val kValues = listOf(2.0, 0.7, 1.0, 0.5)
+        val defaultAngle = 3.0
+        val defaultLambdaLimit = 160.0
+        val kValues = listOf(0.65, 2.1, 0.8, 1.2, 1.2, 1.2, 1.0, 1.2, 2.1, 2.0)
+        var isApplyingPreset = false
+
+        fun applyPresetValues() {
+            isApplyingPreset = true
+            inputAngle.setText(defaultAngle.toInt().toString())
+            inputLambdaLim.setText(defaultLambdaLimit.toInt().toString())
+            isApplyingPreset = false
+        }
+
+        inputPreset.isChecked = true
         inputKFactor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -101,6 +115,9 @@ class BucklingActivity : ComponentActivity() {
         )
         inputLambdaLim.addTextChangedListener(
             DebouncedTextWatcher { text ->
+                if (!isApplyingPreset && parseDouble(text) != defaultLambdaLimit) {
+                    inputPreset.isChecked = false
+                }
                 viewModel.updateInputs { it.copy(lambdaLim = parseDouble(text)) }
             }
         )
@@ -111,9 +128,18 @@ class BucklingActivity : ComponentActivity() {
         )
         inputAngle.addTextChangedListener(
             DebouncedTextWatcher { text ->
+                if (!isApplyingPreset && parseDouble(text) != defaultAngle) {
+                    inputPreset.isChecked = false
+                }
                 viewModel.updateInputs { it.copy(thetaDeg = parseDouble(text)) }
             }
         )
+        inputPreset.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                applyPresetValues()
+            }
+        }
+        applyPresetValues()
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -129,20 +155,20 @@ class BucklingActivity : ComponentActivity() {
                     inputLoadApplied.error = state.errors.nAplicadaN
                     inputAngle.error = state.errors.thetaDeg
 
-                    outputKl.text = formatOutput(state.outputs.klMm)
-                    outputRx.text = formatOutput(state.outputs.rxMm)
-                    outputRy.text = formatOutput(state.outputs.ryMm)
-                    outputLambdaX.text = formatOutput(state.outputs.lambdaX)
-                    outputLambdaY.text = formatOutput(state.outputs.lambdaY)
-                    outputLambdaCrit.text = formatOutput(state.outputs.lambdaCrit)
+                    outputKl.text = formatOutput(state.outputs.klMm, "mm")
+                    outputRx.text = formatOutput(state.outputs.rxMm, "mm")
+                    outputRy.text = formatOutput(state.outputs.ryMm, "mm")
+                    outputLambdaX.text = formatOutput(state.outputs.lambdaX, "-")
+                    outputLambdaY.text = formatOutput(state.outputs.lambdaY, "-")
+                    outputLambdaCrit.text = formatOutput(state.outputs.lambdaCrit, "-")
                     outputAxis.text = state.outputs.eixoCritico ?: "—"
                     outputRegime.text = state.outputs.regime ?: "—"
-                    outputSigmaCr.text = formatOutput(state.outputs.sigmaCrMpa)
-                    outputNCr.text = formatOutput(state.outputs.nCrN)
-                    outputNRd.text = formatOutput(state.outputs.nRdN)
-                    outputUtilization.text = formatOutput(state.outputs.utilization)
-                    outputKgf.text = formatOutput(state.outputs.forceKgf)
-                    outputKgfIncl.text = formatOutput(state.outputs.forceKgfIncl)
+                    outputSigmaCr.text = formatOutput(state.outputs.sigmaCrMpa, "MPa")
+                    outputNCr.text = formatOutput(state.outputs.nCrN, "N")
+                    outputNRd.text = formatOutput(state.outputs.nRdN, "N")
+                    outputUtilization.text = formatOutput(state.outputs.utilization, "-")
+                    outputKgf.text = formatOutput(state.outputs.forceKgf, "kgf")
+                    outputKgfIncl.text = formatOutput(state.outputs.forceKgfIncl, "kgf")
                     outputStatus.text = state.outputs.status ?: "—"
                 }
             }
@@ -154,7 +180,7 @@ class BucklingActivity : ComponentActivity() {
         return normalized.toDoubleOrNull()
     }
 
-    private fun formatOutput(value: Double?): String {
-        return value?.let { NumberFormatter.format(it) } ?: "—"
+    private fun formatOutput(value: Double?, unit: String): String {
+        return value?.let { "${NumberFormatter.format(it)} $unit" } ?: "—"
     }
 }

@@ -37,9 +37,16 @@
 <item>Plástico ABS</item>
 </string-array>
 <string-array name="buckling_k_factors">
-<item>Engastado–livre: K=2,0</item>
-<item>Engastado–articulado: K=0,7</item>
-<item>Articulado–articulado: K=1,0</item>
-<item>Engastado–engastado: K=0,5</item>
+<item>Fixed — Fixed\n0.65</item>
+<item>Fixed — Free\n2.1</item>
+<item>Fixed — Pinned\n0.8</item>
+<item>Fixed — Guided\n1.2</item>
+<item>Free — Free\n1.2</item>
+<item>Guided — Guided\n1.2</item>
+<item>Pinned — Pinned\n1.0</item>
+<item>Pinned — Free\n1.2</item>
+<item>Guided — Free\n2.1</item>
+<item>Guided — Pinned\n2.0</item>
 </string-array>
+    <string name="buckling_preset_label">preset</string>
     </resources>
