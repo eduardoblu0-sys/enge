@@ -1,6 +1,6 @@
 package com.example.enge.model
 
-data class OutputDataUi(
+data class OutputDataSI(
     val delta_obt: Double,
     val delta_adm: Double,
     val Mmax: Double,

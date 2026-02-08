@@ -7,28 +7,27 @@
 </string-array>
 <string-array name="units_length">
 <item>mm</item>
-<item>cm</item>
 <item>m</item>
 </string-array>
 <string-array name="units_distance">
 <item>mm</item>
-<item>cm</item>
+<item>m</item>
 </string-array>
 <string-array name="units_inertia">
 <item>mm^4</item>
-<item>cm^4</item>
+<item>m^4</item>
 </string-array>
 <string-array name="units_stress">
 <item>MPa</item>
-<item>GPa</item>
+<item>Pa</item>
 </string-array>
 <string-array name="units_modulus">
 <item>GPa</item>
 <item>MPa</item>
+<item>Pa</item>
 </string-array>
 <string-array name="units_moment">
-<item>N m</item>
-<item>kN m</item>
+<item>N·m</item>
 </string-array>
 <string-array name="material_options">
 <item>SAE 1020 Laminado</item>
