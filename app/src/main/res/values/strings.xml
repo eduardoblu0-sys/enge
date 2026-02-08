@@ -1,3 +1,38 @@
 <resources>
     <string name="app_name">Enge</string>
-</resources>
+
+<string-array name="units_force">
+<item>N</item>
+<item>kN</item>
+</string-array>
+<string-array name="units_length">
+<item>mm</item>
+<item>cm</item>
+<item>m</item>
+</string-array>
+<string-array name="units_distance">
+<item>mm</item>
+<item>cm</item>
+</string-array>
+<string-array name="units_inertia">
+<item>mm^4</item>
+<item>cm^4</item>
+</string-array>
+<string-array name="units_stress">
+<item>MPa</item>
+<item>GPa</item>
+</string-array>
+<string-array name="units_modulus">
+<item>GPa</item>
+<item>MPa</item>
+</string-array>
+<string-array name="units_moment">
+<item>N m</item>
+<item>kN m</item>
+</string-array>
+<string-array name="material_options">
+<item>SAE 1020 Laminado</item>
+<item>SAE 1045</item>
+<item>ASTM A36</item>
+</string-array>
+    </resources>
