@@ -85,7 +85,7 @@
 
             <Spinner
                 android:id="@+id/input_load_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_force" />
         </LinearLayout>
@@ -113,7 +113,7 @@
 
             <Spinner
                 android:id="@+id/input_length_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_length" />
         </LinearLayout>
@@ -141,7 +141,7 @@
 
             <Spinner
                 android:id="@+id/input_neutral_distance_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
         </LinearLayout>
@@ -169,7 +169,7 @@
 
             <Spinner
                 android:id="@+id/input_inertia_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_inertia" />
         </LinearLayout>
@@ -218,7 +218,7 @@
 
             <Spinner
                 android:id="@+id/input_yield_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
         </LinearLayout>
@@ -246,7 +246,7 @@
 
             <Spinner
                 android:id="@+id/input_modulus_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_modulus" />
         </LinearLayout>
@@ -333,7 +333,7 @@
 
             <Spinner
                 android:id="@+id/output_delta_obt_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
         </LinearLayout>
@@ -361,7 +361,7 @@
 
             <Spinner
                 android:id="@+id/output_delta_adm_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_distance" />
         </LinearLayout>
@@ -389,7 +389,7 @@
 
             <Spinner
                 android:id="@+id/output_mmax_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_moment" />
         </LinearLayout>
@@ -417,7 +417,7 @@
 
             <Spinner
                 android:id="@+id/output_sigma_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
         </LinearLayout>
@@ -445,7 +445,7 @@
 
             <Spinner
                 android:id="@+id/output_fy_adm_unit"
-                android:layout_width="90dp"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:entries="@array/units_stress" />
         </LinearLayout>

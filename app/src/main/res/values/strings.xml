@@ -33,6 +33,8 @@
 <string-array name="material_options">
 <item>SAE 1020 Laminado</item>
 <item>SAE 1045</item>
-<item>ASTM A36</item>
+<item>Inox 304</item>
+<item>Alumínio 6061</item>
+<item>Plástico ABS</item>
 </string-array>
     </resources>
