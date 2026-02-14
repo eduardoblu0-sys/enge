@@ -2,7 +2,8 @@ package com.example.enge.model
 
 enum class ForceUnit {
     N,
-    KN
+    KN,
+    KGF
 }
 
 enum class LengthUnit {

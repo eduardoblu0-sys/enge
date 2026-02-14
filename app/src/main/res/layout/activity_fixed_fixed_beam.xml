@@ -20,56 +20,108 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxHeight="110dp"
             android:layout_marginTop="12dp"
             android:adjustViewBounds="true"
             android:contentDescription="Viga bi-engastada com carga concentrada no meio"
-            android:src="@drawable/beam_deflection" />
+            android:src="@drawable/biengastada" />
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Carga aplicada P" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Deslocamento no meio (bi-engastada + carga no meio):"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:text="Δ ="
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="P · L³"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="192 · E · I"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Carga aplicada P:" />
             <EditText android:id="@+id/input_ffb_p" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="N" />
+            <Spinner android:id="@+id/input_ffb_p_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_force" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Comprimento L" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Comprimento L:" />
             <EditText android:id="@+id/input_ffb_l" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="mm" />
+            <Spinner android:id="@+id/input_ffb_l_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_length" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Distância neutra c" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Distância neutra c:" />
             <EditText android:id="@+id/input_ffb_c" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="mm" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="mm" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Momento de inércia I" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Momento de inércia I:" />
             <EditText android:id="@+id/input_ffb_i" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="mm⁴" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="mm^4" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Coeficiente FS" />
-            <EditText android:id="@+id/input_ffb_fs" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="-" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Material:" />
+            <Spinner android:id="@+id/input_ffb_material" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Material" />
-            <AutoCompleteTextView android:id="@+id/input_ffb_material" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
-        </LinearLayout>
-
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Limite de escoamento fy" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Limite de escoamento fy:" />
             <EditText android:id="@+id/input_ffb_fy" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="MPa" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="MPa" />
         </LinearLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
-            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Módulo de elasticidade E" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Módulo de elasticidade E:" />
             <EditText android:id="@+id/input_ffb_e" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:text="GPa" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="GPa" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Coeficiente FS:" />
+            <EditText android:id="@+id/input_ffb_fs" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="-" />
         </LinearLayout>
 
         <CheckBox

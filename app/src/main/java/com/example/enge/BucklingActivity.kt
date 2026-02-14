@@ -1,5 +1,7 @@
 package com.example.enge
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -212,6 +214,7 @@ class BucklingActivity : ComponentActivity() {
                     outputKgf.text = formatOutput(state.outputs.forceKgf, "kgf")
                     outputKgfIncl.text = formatOutput(state.outputs.forceKgfIncl, "kgf")
                     outputStatus.text = state.outputs.status ?: "—"
+                    applyValidationStyle(outputStatus, outputStatus.text?.toString())
                 }
             }
         }
@@ -277,6 +280,13 @@ class BucklingActivity : ComponentActivity() {
     private fun parseDouble(value: String): Double? {
         val normalized = value.trim().replace(',', '.')
         return normalized.toDoubleOrNull()
+    }
+
+    private fun applyValidationStyle(view: TextView, text: String?) {
+        val normalized = text?.lowercase() ?: ""
+        val isFailure = normalized.contains("falhou") || normalized.contains("não ok") || normalized.contains("nao ok")
+        view.setTypeface(null, if (isFailure) Typeface.BOLD else Typeface.NORMAL)
+        view.setTextColor(if (isFailure) Color.RED else Color.BLACK)
     }
 
     private fun formatOutput(value: Double?, unit: String): String {

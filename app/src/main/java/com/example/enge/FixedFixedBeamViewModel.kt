@@ -9,8 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 data class FixedFixedBeamInputs(
-    val pN: Double? = null,
-    val lMm: Double? = null,
+    val p: Double? = null,
+    val pUnit: com.example.enge.model.ForceUnit = com.example.enge.model.ForceUnit.N,
+    val l: Double? = null,
+    val lUnit: com.example.enge.model.LengthUnit = com.example.enge.model.LengthUnit.MM,
     val cMm: Double? = null,
     val iMm4: Double? = null,
     val fs: Double? = null,
@@ -20,8 +22,8 @@ data class FixedFixedBeamInputs(
 )
 
 data class FixedFixedBeamErrors(
-    val pN: String? = null,
-    val lMm: String? = null,
+    val p: String? = null,
+    val l: String? = null,
     val cMm: String? = null,
     val iMm4: String? = null,
     val fs: String? = null,
@@ -50,8 +52,8 @@ class FixedFixedBeamViewModel : ViewModel() {
 
     private fun validate(inputs: FixedFixedBeamInputs): FixedFixedBeamErrors {
         return FixedFixedBeamErrors(
-            pN = validatePositive(inputs.pN),
-            lMm = validatePositive(inputs.lMm),
+            p = validatePositive(inputs.p),
+            l = validatePositive(inputs.l),
             cMm = validatePositive(inputs.cMm),
             iMm4 = validatePositive(inputs.iMm4),
             fs = validatePositive(inputs.fs),
@@ -62,8 +64,10 @@ class FixedFixedBeamViewModel : ViewModel() {
 
     private fun calculate(inputs: FixedFixedBeamInputs): FixedFixedBeamOutputData {
         val inputData = FixedFixedBeamInputData(
-            pN = inputs.pN ?: 0.0,
-            lMm = inputs.lMm ?: 0.0,
+            p = inputs.p ?: 0.0,
+            pUnit = inputs.pUnit,
+            l = inputs.l ?: 0.0,
+            lUnit = inputs.lUnit,
             cMm = inputs.cMm ?: 0.0,
             iMm4 = inputs.iMm4 ?: 0.0,
             fyMpa = inputs.fyMpa ?: 0.0,

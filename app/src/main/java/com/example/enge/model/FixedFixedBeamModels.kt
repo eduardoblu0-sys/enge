@@ -1,8 +1,10 @@
 package com.example.enge.model
 
 data class FixedFixedBeamInputData(
-    val pN: Double,
-    val lMm: Double,
+    val p: Double,
+    val pUnit: ForceUnit,
+    val l: Double,
+    val lUnit: LengthUnit,
     val cMm: Double,
     val iMm4: Double,
     val fyMpa: Double,

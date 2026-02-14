@@ -1,5 +1,7 @@
 package com.example.enge
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -8,7 +10,6 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import com.example.enge.model.BeamCalculator
 import com.example.enge.model.ForceUnit
@@ -35,9 +36,7 @@ class MainActivity : ComponentActivity() {
         val inputLengthValue = findViewById<EditText>(R.id.input_length_value)
         val inputLengthUnit = findViewById<Spinner>(R.id.input_length_unit)
         val inputNeutralDistanceValue = findViewById<EditText>(R.id.input_neutral_distance_value)
-        val inputNeutralDistanceUnit = findViewById<Spinner>(R.id.input_neutral_distance_unit)
         val inputInertiaValue = findViewById<EditText>(R.id.input_inertia_value)
-        val inputInertiaUnit = findViewById<Spinner>(R.id.input_inertia_unit)
         val inputYieldValue = findViewById<EditText>(R.id.input_yield_value)
         val inputYieldUnit = findViewById<Spinner>(R.id.input_yield_unit)
         val inputModulusValue = findViewById<EditText>(R.id.input_modulus_value)
@@ -60,18 +59,19 @@ class MainActivity : ComponentActivity() {
         val materialsByName = materials.associateBy { it.name }
         inputMaterial.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, materials.map { it.name })
 
+        val defaultFsPreset = 1.5
+        var isApplyingPreset = false
+
         fun applyPresetValues() {
-            inputLoadValue.setText("1250")
-            inputLengthValue.setText("130")
-            inputNeutralDistanceValue.setText("4")
-            inputInertiaValue.setText("815")
-            inputFsAdmValue.setText("1.5")
+            isApplyingPreset = true
+            inputFsAdmValue.setText(NumberFormatter.format(defaultFsPreset))
+            isApplyingPreset = false
         }
 
         fun recalculate(): Boolean {
             val raw = readInput(
                 inputLoadValue, inputLoadUnit, inputLengthValue, inputLengthUnit,
-                inputNeutralDistanceValue, inputNeutralDistanceUnit, inputInertiaValue, inputInertiaUnit,
+                inputNeutralDistanceValue, inputInertiaValue,
                 inputYieldValue, inputYieldUnit, inputModulusValue, inputModulusUnit, inputFsAdmValue
             ) ?: run {
                 clearOutputs(
@@ -79,6 +79,8 @@ class MainActivity : ComponentActivity() {
                     outputFyAdmValue, outputStatusDeflectionValue, outputPercentualDeltaValue,
                     outputStatusStressValue, outputFsObtValue
                 )
+                applyValidationStyle(outputStatusDeflectionValue, null)
+                applyValidationStyle(outputStatusStressValue, null)
                 return false
             }
 
@@ -110,37 +112,81 @@ class MainActivity : ComponentActivity() {
             override fun onNothingSelected(parent: AdapterView<*>?) = Unit
         }
 
-        findViewById<View>(R.id.button_calculate).setOnClickListener {
-            val success = recalculate()
-            if (!success) Toast.makeText(this, "Verifique os campos destacados.", Toast.LENGTH_SHORT).show()
-            saveState(
-                inputLoadValue, inputLoadUnit, inputLengthValue, inputLengthUnit, inputNeutralDistanceValue,
-                inputNeutralDistanceUnit, inputInertiaValue, inputInertiaUnit, inputYieldValue, inputYieldUnit,
-                inputModulusValue, inputModulusUnit, inputFsAdmValue, inputMaterial, inputPreset
-            )
+        var lastLoadUnit = ForceUnit.N
+        inputLoadUnit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            private var initialized = false
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUnit = parseForceUnit(parent?.getItemAtPosition(position)?.toString()) ?: return
+                if (!initialized) {
+                    lastLoadUnit = selectedUnit
+                    initialized = true
+                    recalculate()
+                    return
+                }
+                if (selectedUnit == lastLoadUnit) return
+                val currentValue = parseDouble(inputLoadValue.text?.toString().orEmpty())
+                if (currentValue > 0.0) {
+                    inputLoadValue.setText(NumberFormatter.format(convertForce(currentValue, lastLoadUnit, selectedUnit)))
+                }
+                lastLoadUnit = selectedUnit
+                recalculate()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
         }
 
-        setupUnitRecalculation(inputLoadUnit) { recalculate() }
-        setupUnitRecalculation(inputLengthUnit) { recalculate() }
-        setupUnitRecalculation(inputNeutralDistanceUnit) { recalculate() }
-        setupUnitRecalculation(inputInertiaUnit) { recalculate() }
+        var lastLengthUnit = LengthUnit.MM
+        inputLengthUnit.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            private var initialized = false
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val selectedUnit = parseLengthUnit(parent?.getItemAtPosition(position)?.toString()) ?: return
+                if (!initialized) {
+                    lastLengthUnit = selectedUnit
+                    initialized = true
+                    recalculate()
+                    return
+                }
+                if (selectedUnit == lastLengthUnit) return
+                val currentValue = parseDouble(inputLengthValue.text?.toString().orEmpty())
+                if (currentValue > 0.0) {
+                    inputLengthValue.setText(NumberFormatter.format(convertLength(currentValue, lastLengthUnit, selectedUnit)))
+                }
+                lastLengthUnit = selectedUnit
+                recalculate()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) = Unit
+        }
+
         setupUnitRecalculation(inputYieldUnit) { recalculate() }
         setupUnitRecalculation(inputModulusUnit) { recalculate() }
 
-        val changeWatcher = DebouncedTextWatcher {
-            if (inputPreset.isChecked) inputPreset.isChecked = false
-        }
-        inputLoadValue.addTextChangedListener(changeWatcher)
-        inputLengthValue.addTextChangedListener(changeWatcher)
-        inputNeutralDistanceValue.addTextChangedListener(changeWatcher)
-        inputInertiaValue.addTextChangedListener(changeWatcher)
-        inputFsAdmValue.addTextChangedListener(changeWatcher)
+        val recalcWatcher = DebouncedTextWatcher { recalculate() }
+        inputLoadValue.addTextChangedListener(recalcWatcher)
+        inputLengthValue.addTextChangedListener(recalcWatcher)
+        inputNeutralDistanceValue.addTextChangedListener(recalcWatcher)
+        inputInertiaValue.addTextChangedListener(recalcWatcher)
+        inputYieldValue.addTextChangedListener(recalcWatcher)
+        inputModulusValue.addTextChangedListener(recalcWatcher)
 
-        inputPreset.setOnCheckedChangeListener { _, isChecked -> if (isChecked) applyPresetValues() }
+        inputFsAdmValue.addTextChangedListener(DebouncedTextWatcher { text ->
+            val fsValue = parseDouble(text)
+            if (!isApplyingPreset && fsValue != defaultFsPreset && inputPreset.isChecked) {
+                inputPreset.isChecked = false
+            }
+            recalculate()
+        })
+
+        inputPreset.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                applyPresetValues()
+                recalculate()
+            }
+        }
 
         if (!loadState(
                 inputLoadValue, inputLoadUnit, inputLengthValue, inputLengthUnit, inputNeutralDistanceValue,
-                inputNeutralDistanceUnit, inputInertiaValue, inputInertiaUnit, inputYieldValue, inputYieldUnit,
+                inputInertiaValue, inputYieldValue, inputYieldUnit,
                 inputModulusValue, inputModulusUnit, inputFsAdmValue, inputMaterial, inputPreset
             )) {
             inputPreset.isChecked = true
@@ -154,8 +200,8 @@ class MainActivity : ComponentActivity() {
         saveState(
             findViewById(R.id.input_load_value), findViewById(R.id.input_load_unit),
             findViewById(R.id.input_length_value), findViewById(R.id.input_length_unit),
-            findViewById(R.id.input_neutral_distance_value), findViewById(R.id.input_neutral_distance_unit),
-            findViewById(R.id.input_inertia_value), findViewById(R.id.input_inertia_unit),
+            findViewById(R.id.input_neutral_distance_value),
+            findViewById(R.id.input_inertia_value),
             findViewById(R.id.input_yield_value), findViewById(R.id.input_yield_unit),
             findViewById(R.id.input_modulus_value), findViewById(R.id.input_modulus_unit),
             findViewById(R.id.input_fs_adm_value), findViewById(R.id.input_material), findViewById(R.id.input_main_preset)
@@ -165,8 +211,8 @@ class MainActivity : ComponentActivity() {
     private fun saveState(
         inputLoadValue: EditText, inputLoadUnit: Spinner,
         inputLengthValue: EditText, inputLengthUnit: Spinner,
-        inputNeutralDistanceValue: EditText, inputNeutralDistanceUnit: Spinner,
-        inputInertiaValue: EditText, inputInertiaUnit: Spinner,
+        inputNeutralDistanceValue: EditText,
+        inputInertiaValue: EditText,
         inputYieldValue: EditText, inputYieldUnit: Spinner,
         inputModulusValue: EditText, inputModulusUnit: Spinner,
         inputFsAdmValue: EditText, inputMaterial: Spinner, inputPreset: CheckBox
@@ -177,9 +223,7 @@ class MainActivity : ComponentActivity() {
             .putString("length", inputLengthValue.text?.toString())
             .putInt("lengthUnit", inputLengthUnit.selectedItemPosition)
             .putString("neutral", inputNeutralDistanceValue.text?.toString())
-            .putInt("neutralUnit", inputNeutralDistanceUnit.selectedItemPosition)
             .putString("inertia", inputInertiaValue.text?.toString())
-            .putInt("inertiaUnit", inputInertiaUnit.selectedItemPosition)
             .putString("yield", inputYieldValue.text?.toString())
             .putInt("yieldUnit", inputYieldUnit.selectedItemPosition)
             .putString("modulus", inputModulusValue.text?.toString())
@@ -193,8 +237,8 @@ class MainActivity : ComponentActivity() {
     private fun loadState(
         inputLoadValue: EditText, inputLoadUnit: Spinner,
         inputLengthValue: EditText, inputLengthUnit: Spinner,
-        inputNeutralDistanceValue: EditText, inputNeutralDistanceUnit: Spinner,
-        inputInertiaValue: EditText, inputInertiaUnit: Spinner,
+        inputNeutralDistanceValue: EditText,
+        inputInertiaValue: EditText,
         inputYieldValue: EditText, inputYieldUnit: Spinner,
         inputModulusValue: EditText, inputModulusUnit: Spinner,
         inputFsAdmValue: EditText, inputMaterial: Spinner, inputPreset: CheckBox
@@ -206,9 +250,7 @@ class MainActivity : ComponentActivity() {
         inputLengthValue.setText(prefs.getString("length", ""))
         inputLengthUnit.setSelection(prefs.getInt("lengthUnit", 0))
         inputNeutralDistanceValue.setText(prefs.getString("neutral", ""))
-        inputNeutralDistanceUnit.setSelection(prefs.getInt("neutralUnit", 0))
         inputInertiaValue.setText(prefs.getString("inertia", ""))
-        inputInertiaUnit.setSelection(prefs.getInt("inertiaUnit", 0))
         inputYieldValue.setText(prefs.getString("yield", ""))
         inputYieldUnit.setSelection(prefs.getInt("yieldUnit", 0))
         inputModulusValue.setText(prefs.getString("modulus", ""))
@@ -222,8 +264,8 @@ class MainActivity : ComponentActivity() {
     private fun readInput(
         inputLoadValue: EditText, inputLoadUnit: Spinner,
         inputLengthValue: EditText, inputLengthUnit: Spinner,
-        inputNeutralDistanceValue: EditText, inputNeutralDistanceUnit: Spinner,
-        inputInertiaValue: EditText, inputInertiaUnit: Spinner,
+        inputNeutralDistanceValue: EditText,
+        inputInertiaValue: EditText,
         inputYieldValue: EditText, inputYieldUnit: Spinner,
         inputModulusValue: EditText, inputModulusUnit: Spinner,
         inputFsAdmValue: EditText
@@ -247,12 +289,10 @@ class MainActivity : ComponentActivity() {
 
         val loadUnit = parseForceUnit(inputLoadUnit.selectedItem?.toString())
         val lengthUnit = parseLengthUnit(inputLengthUnit.selectedItem?.toString())
-        val neutralUnit = parseLengthUnit(inputNeutralDistanceUnit.selectedItem?.toString())
-        val inertiaUnit = parseInertiaUnit(inputInertiaUnit.selectedItem?.toString())
         val yieldUnit = parseStressUnit(inputYieldUnit.selectedItem?.toString())
         val modulusUnit = parseModulusUnit(inputModulusUnit.selectedItem?.toString())
 
-        if (!isValid || loadUnit == null || lengthUnit == null || neutralUnit == null || inertiaUnit == null || yieldUnit == null || modulusUnit == null) {
+        if (!isValid || loadUnit == null || lengthUnit == null || yieldUnit == null || modulusUnit == null) {
             return null
         }
 
@@ -262,9 +302,9 @@ class MainActivity : ComponentActivity() {
             L = lengthValue,
             LUnit = lengthUnit,
             c = neutralValue,
-            cUnit = neutralUnit,
+            cUnit = LengthUnit.MM,
             I = inertiaValue,
-            IUnit = inertiaUnit,
+            IUnit = InertiaUnit.MM4,
             fy = yieldValue,
             fyUnit = yieldUnit,
             E = modulusValue,
@@ -291,9 +331,18 @@ class MainActivity : ComponentActivity() {
         outputSigmaValue.text = "${NumberFormatter.format(output.sigma)} MPa"
         outputFyAdmValue.text = "${NumberFormatter.format(output.fy_adm)} MPa"
         outputStatusDeflectionValue.text = output.status_text_deflection
+        applyValidationStyle(outputStatusDeflectionValue, output.status_text_deflection)
         outputPercentualDeltaValue.text = "${NumberFormatter.format(output.percentual_delta)} %"
         outputStatusStressValue.text = output.status_text_stress
+        applyValidationStyle(outputStatusStressValue, output.status_text_stress)
         outputFsObtValue.text = NumberFormatter.format(output.FS_obtido)
+    }
+
+    private fun applyValidationStyle(view: TextView, text: String?) {
+        val normalized = text?.lowercase(Locale.getDefault()).orEmpty()
+        val isFailure = normalized.contains("falhou") || normalized.contains("não ok") || normalized.contains("nao ok")
+        view.setTypeface(null, if (isFailure) Typeface.BOLD else Typeface.NORMAL)
+        view.setTextColor(if (isFailure) Color.RED else Color.BLACK)
     }
 
     private fun clearOutputs(vararg fields: TextView) {
@@ -325,11 +374,34 @@ class MainActivity : ComponentActivity() {
     private fun normalizeUnitText(text: String?): String? =
         text?.trim()?.lowercase(Locale.getDefault())?.replace("·", ".")?.replace(" ", "")?.takeIf { it.isNotEmpty() }
 
-    private fun parseForceUnit(text: String?) = when (normalizeUnitText(text)) { "n" -> ForceUnit.N; "kn" -> ForceUnit.KN; else -> null }
+    private fun parseForceUnit(text: String?) = when (normalizeUnitText(text)) { "n" -> ForceUnit.N; "kn" -> ForceUnit.KN; "kg" -> ForceUnit.KGF; else -> null }
     private fun parseLengthUnit(text: String?) = when (normalizeUnitText(text)) { "mm" -> LengthUnit.MM; "m" -> LengthUnit.M; else -> null }
-    private fun parseInertiaUnit(text: String?) = when (normalizeUnitText(text)) { "mm^4", "mm4" -> InertiaUnit.MM4; "m^4", "m4" -> InertiaUnit.M4; else -> null }
     private fun parseStressUnit(text: String?) = when (normalizeUnitText(text)) { "mpa" -> StressUnit.MPA; "pa" -> StressUnit.PA; else -> null }
     private fun parseModulusUnit(text: String?) = when (normalizeUnitText(text)) { "gpa" -> ModulusUnit.GPA; "mpa" -> ModulusUnit.MPA; "pa" -> ModulusUnit.PA; else -> null }
+
+    private fun convertForce(value: Double, from: ForceUnit, to: ForceUnit): Double {
+        val n = when (from) {
+            ForceUnit.N -> value
+            ForceUnit.KN -> value * 1_000.0
+            ForceUnit.KGF -> value * 9.80665
+        }
+        return when (to) {
+            ForceUnit.N -> n
+            ForceUnit.KN -> n / 1_000.0
+            ForceUnit.KGF -> n / 9.80665
+        }
+    }
+
+    private fun convertLength(value: Double, from: LengthUnit, to: LengthUnit): Double {
+        val mm = when (from) {
+            LengthUnit.MM -> value
+            LengthUnit.M -> value * 1_000.0
+        }
+        return when (to) {
+            LengthUnit.MM -> mm
+            LengthUnit.M -> mm / 1_000.0
+        }
+    }
 
     private fun stressFromPa(valuePa: Double, unit: StressUnit): Double = when (unit) { StressUnit.MPA -> valuePa / 1e6; StressUnit.PA -> valuePa }
     private fun modulusFromPa(valuePa: Double, unit: ModulusUnit): Double = when (unit) { ModulusUnit.GPA -> valuePa / 1e9; ModulusUnit.MPA -> valuePa / 1e6; ModulusUnit.PA -> valuePa }

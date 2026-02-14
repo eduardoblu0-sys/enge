@@ -4,6 +4,7 @@
 <string-array name="units_force">
 <item>N</item>
 <item>kN</item>
+<item>Kg</item>
 </string-array>
 <string-array name="units_length">
 <item>mm</item>

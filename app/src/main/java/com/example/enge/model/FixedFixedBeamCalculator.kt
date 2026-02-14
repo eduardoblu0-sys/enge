@@ -5,8 +5,8 @@ import kotlin.math.pow
 object FixedFixedBeamCalculator {
     fun toSI(input: FixedFixedBeamInputData): FixedFixedBeamInputDataSI {
         return FixedFixedBeamInputDataSI(
-            pN = input.pN,
-            lM = input.lMm / 1_000.0,
+            pN = BeamCalculator.forceToN(input.p, input.pUnit),
+            lM = BeamCalculator.lengthToM(input.l, input.lUnit),
             cM = input.cMm / 1_000.0,
             iM4 = input.iMm4 * 1e-12,
             fyPa = input.fyMpa * 1e6,

@@ -92,18 +92,18 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Distância neutra c:" />
             <EditText android:id="@+id/input_neutral_distance_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <Spinner android:id="@+id/input_neutral_distance_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_distance" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="mm" />
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Momento de inércia I:" />
             <EditText android:id="@+id/input_inertia_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
-            <Spinner android:id="@+id/input_inertia_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_inertia" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="mm^4" />
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
             <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Material:" />
-            <Spinner android:id="@+id/input_material" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+            <Spinner android:id="@+id/input_material" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="2" />
         </LinearLayout>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
@@ -132,12 +132,6 @@
             android:text="preset"
             android:checked="true" />
 
-        <Button
-            android:id="@+id/button_calculate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Calcular" />
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="RESULTADOS" android:textSize="18sp" android:textStyle="bold" />
 

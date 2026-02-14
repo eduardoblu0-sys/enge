@@ -61,6 +61,7 @@ object BeamCalculator {
         return when (unit) {
             ForceUnit.N -> value
             ForceUnit.KN -> value * 1_000.0
+            ForceUnit.KGF -> value * 9.80665
         }
     }
 
