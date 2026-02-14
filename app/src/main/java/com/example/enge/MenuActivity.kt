@@ -16,8 +16,18 @@ class MenuActivity : ComponentActivity() {
         }
 
         val bucklingItem = findViewById<LinearLayout>(R.id.menu_buckling_item)
+        val materialsItem = findViewById<LinearLayout>(R.id.menu_materials_item)
+        val fixedFixedBeamItem = findViewById<LinearLayout>(R.id.menu_fixed_fixed_beam_item)
+        fixedFixedBeamItem.setOnClickListener {
+            startActivity(Intent(this, FixedFixedBeamActivity::class.java))
+        }
+
         bucklingItem.setOnClickListener {
             startActivity(Intent(this, BucklingActivity::class.java))
+        }
+
+        materialsItem.setOnClickListener {
+            startActivity(Intent(this, MaterialManagementActivity::class.java))
         }
     }
 }

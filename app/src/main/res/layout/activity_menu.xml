@@ -33,7 +33,7 @@
                 android:alignmentMode="alignMargins"
                 android:columnCount="2"
                 android:columnOrderPreserved="false"
-                android:rowCount="1"
+                android:rowCount="2"
                 android:useDefaultMargins="true">
 
                 <LinearLayout
@@ -95,6 +95,64 @@
                         android:textColor="#5F6368"
                         android:textSize="12sp" />
                 </LinearLayout>
+            
+                <LinearLayout
+                    android:id="@+id/menu_fixed_fixed_beam_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="Viga bi-engastada"
+                        android:padding="12dp"
+                        android:src="@drawable/beam_deflection" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="viga bi-engastada"
+                        android:textColor="#5F6368"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+            
+                <LinearLayout
+                    android:id="@+id/menu_materials_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="Gerenciar materiais"
+                        android:padding="12dp"
+                        android:src="@android:drawable/ic_menu_manage" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="materiais"
+                        android:textColor="#5F6368"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
             </GridLayout>
         </LinearLayout>
     </ScrollView>

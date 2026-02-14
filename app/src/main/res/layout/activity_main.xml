@@ -77,478 +77,106 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Carga aplicada:" />
+            <EditText android:id="@+id/input_load_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_load_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_force" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Comprimento:" />
+            <EditText android:id="@+id/input_length_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_length_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_length" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Distância neutra c:" />
+            <EditText android:id="@+id/input_neutral_distance_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_neutral_distance_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_distance" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Momento de inércia I:" />
+            <EditText android:id="@+id/input_inertia_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_inertia_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_inertia" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Material:" />
+            <Spinner android:id="@+id/input_material" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Limite de escoamento fy:" />
+            <EditText android:id="@+id/input_yield_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_yield_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_stress" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Módulo de elasticidade E:" />
+            <EditText android:id="@+id/input_modulus_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <Spinner android:id="@+id/input_modulus_unit" android:layout_width="110dp" android:layout_height="wrap_content" android:entries="@array/units_modulus" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Fator de segurança (FS):" />
+            <EditText android:id="@+id/input_fs_adm_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:inputType="numberDecimal" />
+            <TextView android:layout_width="110dp" android:layout_height="wrap_content" android:gravity="center" android:text="-" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/input_main_preset"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Carga aplicada:" />
-
-            <EditText
-                android:id="@+id/input_load_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="1250" />
-
-            <Spinner
-                android:id="@+id/input_load_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_force" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Comprimento:" />
-
-            <EditText
-                android:id="@+id/input_length_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="130" />
-
-            <Spinner
-                android:id="@+id/input_length_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_length" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Distância máx linha neutra:" />
-
-            <EditText
-                android:id="@+id/input_neutral_distance_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="4" />
-
-            <Spinner
-                android:id="@+id/input_neutral_distance_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_distance" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Momento de inércia:" />
-
-            <EditText
-                android:id="@+id/input_inertia_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="6163" />
-
-            <Spinner
-                android:id="@+id/input_inertia_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_inertia" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Material:" />
-
-            <Spinner
-                android:id="@+id/input_material"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/material_options" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Limite de escoamento:" />
-
-            <EditText
-                android:id="@+id/input_yield_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="250" />
-
-            <Spinner
-                android:id="@+id/input_yield_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_stress" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Mód. Elasticidade:" />
-
-            <EditText
-                android:id="@+id/input_modulus_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="200" />
-
-            <Spinner
-                android:id="@+id/input_modulus_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_modulus" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Coef. de segurança admissível:" />
-
-            <EditText
-                android:id="@+id/input_fs_adm_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="numberDecimal"
-                android:text="1.5" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="NOTA:"
-                android:textColor="#D32F2F"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_weight="1"
-                android:text="Neste memorial não é realizada as verificações de flambagens locais."
-                android:textSize="13sp" />
-        </LinearLayout>
+            android:text="preset"
+            android:checked="true" />
 
         <Button
             android:id="@+id/button_calculate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="Calcular" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="RESULTADOS"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="RESULTADOS" android:textSize="18sp" android:textStyle="bold" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Deslocamento obtido:" />
-
-            <EditText
-                android:id="@+id/output_delta_obt_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-
-            <Spinner
-                android:id="@+id/output_delta_obt_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_distance" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Deslocamento obtido δ [mm]" />
+            <TextView android:id="@+id/output_delta_obt_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Deslocamento admissível δ_adm [mm]" />
+            <TextView android:id="@+id/output_delta_adm_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Momento fletor máximo Mmax [N·m]" />
+            <TextView android:id="@+id/output_mmax_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Tensão de flexão σ [MPa]" />
+            <TextView android:id="@+id/output_sigma_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Limite de escoamento admissível fy_adm [MPa]" />
+            <TextView android:id="@+id/output_fy_adm_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Verificação de deslocamento" />
+            <TextView android:id="@+id/output_status_deflection_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Percentual de deslocamento [%]" />
+            <TextView android:id="@+id/output_percentual_delta_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Verificação de tensão" />
+            <TextView android:id="@+id/output_status_stress_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:orientation="horizontal">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="Fator de segurança obtido" />
+            <TextView android:id="@+id/output_fs_obt_value" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:text="—" android:textStyle="bold" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Deslocamento admissível:" />
-
-            <EditText
-                android:id="@+id/output_delta_adm_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-
-            <Spinner
-                android:id="@+id/output_delta_adm_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_distance" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Momento fletor máximo:" />
-
-            <EditText
-                android:id="@+id/output_mmax_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-
-            <Spinner
-                android:id="@+id/output_mmax_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_moment" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tensão de flexão:" />
-
-            <EditText
-                android:id="@+id/output_sigma_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-
-            <Spinner
-                android:id="@+id/output_sigma_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_stress" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Limite de escoamento admissível:" />
-
-            <EditText
-                android:id="@+id/output_fy_adm_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-
-            <Spinner
-                android:id="@+id/output_fy_adm_unit"
-                android:layout_width="110dp"
-                android:layout_height="wrap_content"
-                android:entries="@array/units_stress" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Deslocamento máximo:" />
-
-            <EditText
-                android:id="@+id/output_status_deflection_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Percentual de deslocamento obtido (%):" />
-
-            <EditText
-                android:id="@+id/output_percentual_delta_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Tensão máxima:" />
-
-            <EditText
-                android:id="@+id/output_status_stress_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Fator de segurança obtido:" />
-
-            <EditText
-                android:id="@+id/output_fs_obt_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:enabled="false"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
     </LinearLayout>
 </ScrollView>

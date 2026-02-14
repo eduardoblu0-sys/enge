@@ -3,6 +3,7 @@ package com.example.enge
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Spinner
@@ -12,12 +13,14 @@ import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.enge.model.MaterialRepository
 import com.example.enge.util.DebouncedTextWatcher
 import com.example.enge.util.NumberFormatter
 import kotlinx.coroutines.launch
 
 class BucklingActivity : ComponentActivity() {
     private val viewModel: BucklingViewModel by viewModels()
+    private val prefs by lazy { getSharedPreferences("buckling_form_state", MODE_PRIVATE) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,12 +70,12 @@ class BucklingActivity : ComponentActivity() {
             isApplyingPreset = false
         }
 
-        val materials = mapOf(
-            "SAE 1020 Laminado" to MaterialProperties(fyMpa = 350.0, eGPa = 200.0),
-            "SAE 1045" to MaterialProperties(fyMpa = 530.0, eGPa = 200.0),
-            "Inox 304" to MaterialProperties(fyMpa = 215.0, eGPa = 193.0),
-            "Alumínio 6061" to MaterialProperties(fyMpa = 275.0, eGPa = 69.0),
-            "Plástico ABS" to MaterialProperties(fyMpa = 40.0, eGPa = 2.1)
+        val materials = MaterialRepository.getMaterials(this)
+        val materialsByName = materials.associateBy { it.name }
+        inputMaterial.adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            materials.map { it.name }
         )
 
         var lastMaterial: String? = null
@@ -85,9 +88,9 @@ class BucklingActivity : ComponentActivity() {
             ) {
                 val selected = parent?.getItemAtPosition(position)?.toString()
                 if (selected != lastMaterial) {
-                    materials[selected]?.let { material ->
+                    materialsByName[selected]?.let { material ->
                         inputYield.setText(NumberFormatter.format(material.fyMpa))
-                        inputModulus.setText(NumberFormatter.format(material.eGPa))
+                        inputModulus.setText(NumberFormatter.format(material.eGpa))
                     }
                     lastMaterial = selected
                 }
@@ -175,6 +178,10 @@ class BucklingActivity : ComponentActivity() {
             }
         }
         applyPresetValues()
+        loadState(
+            inputLength, inputKFactor, inputArea, inputInertiaX, inputInertiaY, inputLoadApplied,
+            inputMaterial, inputModulus, inputYield, inputGamma, inputLambdaLim, inputAngle, inputPreset
+        )
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -210,6 +217,63 @@ class BucklingActivity : ComponentActivity() {
         }
     }
 
+
+    override fun onPause() {
+        super.onPause()
+        saveState(
+            findViewById(R.id.input_buckling_length), findViewById(R.id.input_buckling_k_factor),
+            findViewById(R.id.input_buckling_area), findViewById(R.id.input_buckling_inertia_x),
+            findViewById(R.id.input_buckling_inertia_y), findViewById(R.id.input_buckling_load_applied),
+            findViewById(R.id.input_buckling_material), findViewById(R.id.input_buckling_modulus),
+            findViewById(R.id.input_buckling_yield), findViewById(R.id.input_buckling_gamma),
+            findViewById(R.id.input_buckling_lambda_limit), findViewById(R.id.input_buckling_angle),
+            findViewById(R.id.input_buckling_preset)
+        )
+    }
+
+    private fun saveState(
+        inputLength: EditText, inputKFactor: Spinner, inputArea: EditText, inputInertiaX: EditText,
+        inputInertiaY: EditText, inputLoadApplied: EditText, inputMaterial: Spinner, inputModulus: EditText,
+        inputYield: EditText, inputGamma: EditText, inputLambdaLim: EditText, inputAngle: EditText, inputPreset: CheckBox
+    ) {
+        prefs.edit()
+            .putString("length", inputLength.text.toString())
+            .putInt("k", inputKFactor.selectedItemPosition)
+            .putString("area", inputArea.text.toString())
+            .putString("ix", inputInertiaX.text.toString())
+            .putString("iy", inputInertiaY.text.toString())
+            .putString("load", inputLoadApplied.text.toString())
+            .putInt("material", inputMaterial.selectedItemPosition)
+            .putString("modulus", inputModulus.text.toString())
+            .putString("yield", inputYield.text.toString())
+            .putString("gamma", inputGamma.text.toString())
+            .putString("lambda", inputLambdaLim.text.toString())
+            .putString("angle", inputAngle.text.toString())
+            .putBoolean("preset", inputPreset.isChecked)
+            .apply()
+    }
+
+    private fun loadState(
+        inputLength: EditText, inputKFactor: Spinner, inputArea: EditText, inputInertiaX: EditText,
+        inputInertiaY: EditText, inputLoadApplied: EditText, inputMaterial: Spinner, inputModulus: EditText,
+        inputYield: EditText, inputGamma: EditText, inputLambdaLim: EditText, inputAngle: EditText, inputPreset: CheckBox
+    ) {
+        if (!prefs.contains("length")) return
+        inputLength.setText(prefs.getString("length", ""))
+        inputKFactor.setSelection(prefs.getInt("k", 0))
+        inputArea.setText(prefs.getString("area", ""))
+        inputInertiaX.setText(prefs.getString("ix", ""))
+        inputInertiaY.setText(prefs.getString("iy", ""))
+        inputLoadApplied.setText(prefs.getString("load", ""))
+        inputMaterial.setSelection(prefs.getInt("material", 0))
+        inputModulus.setText(prefs.getString("modulus", ""))
+        inputYield.setText(prefs.getString("yield", ""))
+        inputGamma.setText(prefs.getString("gamma", ""))
+        inputLambdaLim.setText(prefs.getString("lambda", ""))
+        inputAngle.setText(prefs.getString("angle", ""))
+        inputPreset.isChecked = prefs.getBoolean("preset", false)
+    }
+
     private fun parseDouble(value: String): Double? {
         val normalized = value.trim().replace(',', '.')
         return normalized.toDoubleOrNull()
@@ -218,9 +282,4 @@ class BucklingActivity : ComponentActivity() {
     private fun formatOutput(value: Double?, unit: String): String {
         return value?.let { "${NumberFormatter.format(it)} $unit" } ?: "—"
     }
-
-    private data class MaterialProperties(
-        val fyMpa: Double,
-        val eGPa: Double
-    )
 }
