@@ -32,11 +32,37 @@
                     android:padding="8dp">
 
                     <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="UCECH"
+                        android:padding="10dp"
+                        android:src="@drawable/ucech" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="UCECH"
+                        android:textColor="#5F6368"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCF"
-                        android:padding="14dp"
+                        android:padding="10dp"
                         android:src="@drawable/ucf" />
 
                     <TextView
@@ -58,11 +84,37 @@
                     android:padding="8dp">
 
                     <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="UCFA"
+                        android:padding="10dp"
+                        android:src="@drawable/ucfa" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="UCFA"
+                        android:textColor="#5F6368"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCFB"
-                        android:padding="14dp"
+                        android:padding="10dp"
                         android:src="@drawable/ucfb" />
 
                     <TextView
@@ -84,11 +136,11 @@
                     android:padding="8dp">
 
                     <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCFC"
-                        android:padding="14dp"
+                        android:padding="10dp"
                         android:src="@drawable/ucfc" />
 
                     <TextView
@@ -110,11 +162,37 @@
                     android:padding="8dp">
 
                     <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="UCFL"
+                        android:padding="10dp"
+                        android:src="@drawable/ucfl" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="UCFL"
+                        android:textColor="#5F6368"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCP"
-                        android:padding="14dp"
+                        android:padding="10dp"
                         android:src="@drawable/ucp" />
 
                     <TextView
@@ -136,11 +214,11 @@
                     android:padding="8dp">
 
                     <ImageView
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCPA"
-                        android:padding="14dp"
+                        android:padding="10dp"
                         android:src="@drawable/ucpa" />
 
                     <TextView
@@ -148,6 +226,58 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="UCPA"
+                        android:textColor="#5F6368"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="UCPH"
+                        android:padding="10dp"
+                        android:src="@drawable/ucph" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="UCPH"
+                        android:textColor="#5F6368"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="79dp"
+                        android:layout_height="79dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="UCT"
+                        android:padding="10dp"
+                        android:src="@drawable/uct" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="UCT"
                         android:textColor="#5F6368"
                         android:textSize="14sp"
                         android:textStyle="bold" />
