@@ -38,6 +38,11 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.Enge" />
         <activity
+            android:name=".UcMenuActivity"
+            android:exported="false"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Enge" />
+        <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/app_name"
