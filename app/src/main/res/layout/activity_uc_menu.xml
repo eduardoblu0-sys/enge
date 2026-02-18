@@ -166,7 +166,7 @@
                         android:layout_height="79dp"
                         android:background="@drawable/menu_icon_background"
                         android:contentDescription="UCFL"
-                        android:padding="10dp"
+                        android:padding="1dp"
                         android:src="@drawable/ucfl" />
 
                     <TextView
