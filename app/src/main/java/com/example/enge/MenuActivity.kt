@@ -19,6 +19,7 @@ class MenuActivity : ComponentActivity() {
         val materialsItem = findViewById<LinearLayout>(R.id.menu_materials_item)
         val fixedFixedBeamItem = findViewById<LinearLayout>(R.id.menu_fixed_fixed_beam_item)
         val ucIconsItem = findViewById<LinearLayout>(R.id.menu_uc_icons_item)
+        val torsionItem = findViewById<LinearLayout>(R.id.menu_torsion_item)
         fixedFixedBeamItem.setOnClickListener {
             startActivity(Intent(this, FixedFixedBeamActivity::class.java))
         }
@@ -33,6 +34,10 @@ class MenuActivity : ComponentActivity() {
 
         ucIconsItem.setOnClickListener {
             startActivity(Intent(this, UcMenuActivity::class.java))
+        }
+
+        torsionItem.setOnClickListener {
+            startActivity(Intent(this, TorsionShaftCalculatorActivity::class.java))
         }
     }
 }

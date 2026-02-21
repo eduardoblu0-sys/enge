@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-git <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F4F5F7">
@@ -12,7 +12,7 @@ git <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:importantForAccessibility="no"
         android:scaleType="fitCenter"
         android:layout_gravity="center"
-        adjustViewBounds="true"
+        android:adjustViewBounds="true"
         android:src="@drawable/gmr" />
 
     <ScrollView
@@ -97,7 +97,7 @@ git <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-            
+
                 <LinearLayout
                     android:id="@+id/menu_fixed_fixed_beam_item"
                     android:layout_width="0dp"
@@ -126,8 +126,6 @@ git <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:textSize="12sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
-            
 
                 <LinearLayout
                     android:id="@+id/menu_uc_icons_item"
@@ -182,6 +180,35 @@ git <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="MATERIAIS"
+                        android:textColor="#5F6368"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/menu_torsion_item"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:background="@drawable/menu_icon_background"
+                        android:contentDescription="Torção de eixo"
+                        android:padding="12dp"
+                        android:src="@android:drawable/ic_menu_rotate" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="TORÇÃO DE EIXO"
                         android:textColor="#5F6368"
                         android:textSize="12sp"
                         android:textStyle="bold" />

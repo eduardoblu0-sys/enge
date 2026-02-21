@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="8dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Força convertida [N]" />
+    <TextView android:id="@+id/output_torsion_force_n" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Braço convertido [m]" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_arm_m" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Torque T [N·m]" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_torque" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Momento polar J [m⁴]" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_j" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Tensão máxima τ_max [MPa]" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_tau" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Ângulo de torção θ [graus]" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_theta" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Rigidez torsional k" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_k" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Verificação de tensão" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Fator de segurança obtido" android:layout_marginTop="6dp" />
+    <TextView android:id="@+id/output_torsion_fs_obt" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textStyle="bold" />
+</LinearLayout>

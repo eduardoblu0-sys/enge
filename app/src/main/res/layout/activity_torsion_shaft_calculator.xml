@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="#F4F5F7">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cálculo de torção em eixos"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#202124" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Entradas"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#202124" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="A) Dados para torque"
+            android:textStyle="bold" />
+
+        <include layout="@layout/view_torsion_force_input" />
+        <include layout="@layout/view_torsion_arm_input" />
+        <include layout="@layout/view_torsion_phi_input" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="B) Geometria do eixo"
+            android:textStyle="bold" />
+
+        <include layout="@layout/view_torsion_outer_d_input" />
+
+        <Switch
+            android:id="@+id/input_torsion_is_hollow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Eixo oco" />
+
+        <LinearLayout
+            android:id="@+id/container_torsion_inner_diameter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/input_torsion_inner_diameter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Diâmetro interno d"
+                android:inputType="numberDecimal" />
+
+            <Spinner
+                android:id="@+id/input_torsion_inner_diameter_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="C) Propriedades e condição"
+            android:textStyle="bold" />
+
+        <include layout="@layout/view_torsion_length_input" />
+        <include layout="@layout/view_torsion_g_input" />
+        <include layout="@layout/view_torsion_tau_y_input" />
+
+        <EditText
+            android:id="@+id/input_torsion_fs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Fator de segurança FS"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Resultados"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="#202124" />
+
+        <include layout="@layout/view_torsion_output_rows" />
+
+    </LinearLayout>
+</ScrollView>
